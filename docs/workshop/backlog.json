@@ -1,0 +1,140 @@
+{
+  "repository": "samueltauil/cronwise",
+  "purpose": "Scoped issue definitions for the Visual Studio-first delegation workshop. These are separate from the legacy A-F issue seeder; publish deliberately, never as a normal validation step.",
+  "issues": [
+    {
+      "key": "repository-instructions",
+      "number": 22,
+      "title": "Add .github/copilot-instructions.md for repository-wide Copilot guidance",
+      "labels": ["documentation", "enhancement", "workshop:prep"],
+      "body": "Give Visual Studio users a reliable shared baseline for agent work in both the Node service and the Razor/.NET companion.\n\n### Scope\n\nAdd `.github/copilot-instructions.md` with verified project structure and commands, ESM/Node test conventions, .NET 10/xUnit/Razor conventions, normal Razor encoding, UTC/strictly-after cron semantics, scoped edits, and evidence-based verification. Keep the file short. Do not copy every skill procedure or confuse intended behavior with the planted defects.\n\n### Acceptance\n\n- Rules cover `src`, `test`, and `docs/workshop/companion`, including the companion's locked restore, build, and tests.\n- `npm test` and companion tests are normal validation; `demo:verify` checks the legacy planted-defect starting state and never triggers an automatic reset.\n- Essential review rules are here because Visual Studio review does not have the same instruction support as GitHub review.\n- A rehearsal shows References and the applicable guidance in the actual Visual Studio build. Document what was verified versus merely documented.\n- No automatic commit, push, merge, cloud grant, CMS mutation, or production access.\n\nUse `docs/delegation-workshop.md` and `docs/workshop/support-and-governance.md` as the workshop contract. Other profiles and scoped rules remain separate preparation tasks."
+    },
+    {
+      "key": "implementation-planner",
+      "number": 23,
+      "title": "Add a read-only implementation-planner custom agent",
+      "labels": ["enhancement", "documentation", "workshop:prep"],
+      "body": "Create a specialist that helps refine a raw story into a bounded specification, not just a list of coding steps.\n\n### Scope\n\nAdd `.github/agents/implementation-planner.agent.md`. Validate the actual Visual Studio read/search tool names; do not assume CLI aliases work there. Leave model selection to the environment. Compare the synthetic story and design fixtures, identify their severity mismatch, and distinguish facts, assumptions, owner decisions, exclusions, file budget, test cases, checkpoints, and done criteria.\n\n### Acceptance\n\n- The agent is discoverable in the rehearsed Visual Studio build and has no edit/execute tools.\n- The notice-section example identifies the design/story conflict before proposing implementation.\n- The daily activity-log example keeps unresolved access and retention questions open rather than inventing a business policy.\n- The output is reviewable by a product owner and ends at a specification checkpoint.\n- Explain when to use the built-in Plan agent instead, including its saved plan artifact; do not claim it performs no file writes at all.\n- Neither example is implemented by this task.\n\nSee `docs/workshop/prompts.md` and the official Visual Studio Plan/custom-agent references in the support guide."
+    },
+    {
+      "key": "team-reviewer",
+      "number": 24,
+      "title": "Add a read-only team-reviewer custom agent for Razor and cron changes",
+      "labels": ["enhancement", "documentation", "workshop:prep"],
+      "body": "Create `.github/agents/team-reviewer.agent.md` for scoped, evidence-backed review of agent-authored changes. This replaces the cron-only profile scope; retain cron coverage while making Razor/.NET the primary workshop example.\n\n### Acceptance\n\n- Use only verified Visual Studio read/search tools; no edits, execution, or publishing comments. Do not hard-code a model or a finding quota.\n- Review the approved specification, actual changed-file budget, Razor encoding, validation, accessible rendering, API compatibility, and meaningful tests. For cron changes, inspect token validation, day rules, and UTC boundaries.\n- Findings include location, impact, evidence, and the smallest correction. Explicitly report uncertainty and missing test evidence.\n- The read-only reviewer checks that test/CI evidence matches the patch; the writer/verifier in #25 runs tests. Do not promise this profile executes unit tests itself.\n- Show a flawed temporary diff and its corrected version without committing new planted vulnerabilities to main.\n- Demonstrate the difference between this profile, Visual Studio local review, and built-in GitHub PR review; selecting a profile does not configure PR review automatically.\n\nUse the evidence packet in `docs/workshop/prompts.md`. Rehearse discovery and tool state in the installed Visual Studio build."
+    },
+    {
+      "key": "test-writer-verifier",
+      "number": 25,
+      "title": "Add a regression-test-writer and verifier agent for Node and .NET",
+      "labels": ["enhancement", "testing", "workshop:prep"],
+      "body": "Provide a specialist that creates focused regressions and produces real execution evidence before an implementation is accepted.\n\n### Acceptance\n\n- Add a valid custom-agent profile with the actual read/edit/test execution tools needed in Visual Studio. Prompt scope is not an enforced tests-only filesystem boundary; document that distinction.\n- Pick the runner from the target project: xUnit and `dotnet test` for the companion, `node:test` and `npm test` for the Node service. No new framework or hard-coded model.\n- Propose a regression independently from implementation, run it, and explain whether it fails for the expected reason. Stop before modifying production code unless the user expands scope.\n- Use notice validation as the primary example and malformed cron tokens as a fallback.\n- Report exact commands, results, and the identified patch/commit, plus skipped checks or environmental failures. Run the integrated suite after the focused cases.\n- A failing test is not weakened to match generated code; no automatic reset, merge, push, or test-skipping workaround.\n\nThe reviewer in #24 consumes this evidence. Use the checkpoint flow in `docs/workshop/prompts.md` and rehearse Test Explorer in the actual Visual Studio build."
+    },
+    {
+      "key": "path-instructions",
+      "number": 26,
+      "title": "Add path-specific instructions for cron, HTTP, Razor, and tests",
+      "labels": ["documentation", "enhancement", "workshop:prep"],
+      "body": "Keep focused conventions close to the code without duplicating the shared baseline in #22.\n\n### Acceptance\n\n- Add documented `.github/instructions/*.instructions.md` files with valid `applyTo` patterns for cron logic, HTTP routes, companion Razor/models, and both test areas.\n- Patterns cover `src/parser.js`, `src/schedule.js`, `src/humanize.js`, `src/routes/**/*.js`, `test/**/*.test.js`, and the appropriate files under `docs/workshop/companion`.\n- Guidance covers UTC/token correctness, explicit request errors, normal Razor encoding, typed section validation, and small independently derived regressions in the actual runner.\n- A rehearsal shows which rules apply to a representative parser, route, Razor page, C# test, and unrelated documentation file.\n- Distinguish Visual Studio Chat from code-review instruction support. Put mandatory shared review rules in #22; do not rely on path rules being consumed by every reviewer.\n- No automatic unrelated fixes, destructive demo reset, hidden dependency changes, or live data access.\n\nUse the official support matrix in `docs/workshop/support-and-governance.md`; do not assume a valid pattern proves client discovery."
+    },
+    {
+      "key": "portable-agent-instructions",
+      "number": 27,
+      "title": "Add AGENTS.md for portable agent workflow guidance",
+      "labels": ["documentation", "enhancement", "workshop:prep"],
+      "body": "Add a concise root `AGENTS.md` for the clients that support agent instructions, without making it the only source of required Visual Studio conventions.\n\n### Acceptance\n\n- Describe goal/context/constraints/done criteria, preserve unrelated work, require a reviewed file budget, and attach test/build/review evidence to the actual patch.\n- Link the verified shared baseline in #22 when it exists; do not maintain conflicting copies or link a missing file as already shipped.\n- Explain that `AGENTS.md` is context, `.github/agents/*.agent.md` defines roles/tools, and skills are on-demand procedures.\n- The documentation explicitly states that the current GitHub matrix does not list automatic `AGENTS.md` support for Visual Studio Chat. Demonstrate supported CLI/cloud behavior or an explicit-file fallback rather than claiming universal discovery.\n- No extra nested instruction files merely to enlarge the demo, and no automatic reset, push, permissions grant, or production action.\n\nUse `docs/workshop/support-and-governance.md` for the client boundary. Rehearse one bounded task and record the surface/build used."
+    },
+    {
+      "key": "cron-regression-skill",
+      "number": 28,
+      "title": "Add a cron-regression skill for investigating scheduling bugs",
+      "labels": ["enhancement", "testing", "workshop:extension"],
+      "body": "Keep the existing cron domain as an optional skill demonstration rather than the primary website workshop pattern.\n\n### Acceptance\n\n- Add `.github/skills/cron-regression/SKILL.md` with valid matching name/description metadata and clear activation conditions.\n- Use fixed UTC inputs, derive expected behavior independently, reproduce the report, and choose a small test in the existing Node runner.\n- Referenced resources stay small and do not copy parser/scheduler implementation.\n- #12 and #14 are examples, not automatic unrelated fixes; known defects are never made the expected correct result.\n- Rehearse skill discovery/activation in Visual Studio 18.5+ or another explicitly identified supported client. Manual authoring is the fallback if a creation panel is Insiders-only.\n- No new framework, destructive reset, remote operation, or silent remediation.\n\nThe primary website section-authoring skill is a separate issue. See `docs/delegation-workshop.md` for the core and extension tracks."
+    },
+    {
+      "key": "api-smoke-skill",
+      "number": 29,
+      "title": "Add an api-smoke-test skill for the Razor companion and Node service",
+      "labels": ["enhancement", "testing", "workshop:prep"],
+      "body": "Package repeatable local verification without treating it as permission to connect to live services.\n\n### Acceptance\n\n- Add `.github/skills/api-smoke-test/SKILL.md` and small referenced helpers with documented activation conditions and current project-specific commands.\n- Primary example: build/start the Razor companion on loopback, check `/health` and rendered page content, assert meaningful responses, and stop only the process started by the helper.\n- Node fallback: create the existing Express app on an ephemeral loopback port and check health, a valid explanation, missing input, and an unknown route.\n- Use bounded readiness/cleanup and non-zero failures. Avoid fixed-port conflicts, process-name-wide termination, shell-specific background commands, and new frameworks.\n- Work on Windows and Linux and reuse suitable CI helpers from #20 rather than creating competing implementations.\n- Report actual checks and limitations. Smoke success is not a substitute for unit tests, scanner results, or human review; do not run `demo:verify` as feature validation.\n- Rehearse skill activation and do not claim a cloned repo configures external MCP services.\n\nSee `docs/workshop/companion/README.md` and the workshop evidence packet."
+    },
+    {
+      "key": "workshop-readiness",
+      "number": 31,
+      "title": "Workshop: rehearse the Visual Studio-first delegation and verification track",
+      "labels": ["documentation", "testing", "workshop:prep"],
+      "body": "Use `docs/delegation-workshop.md` as the advanced-audience track instead of the original autocomplete-oriented workshop. The new preparation assets must be reviewed and published before a remote/cloud rehearsal can use them.\n\n### Done when\n\n- Record exact Visual Studio build/channel, Copilot access, ASP.NET workload, SDK, instruction discovery, custom-agent tools, skill activation, and the intended code host.\n- Rehearse specification -> bounded notice-section patch -> focused/integrated tests -> evidence review -> human acceptance.\n- Prepare #22-#27 and one relevant skill; keep Node issues #11/#15 as fallback work, not a forced migration.\n- Rehearse one approved read-only MCP fetch or label the synthetic fixture fallback honestly.\n- Document Azure Boards + GitHub versus Azure Repos paths and required access/data decisions before cloud delegation.\n- Prepare one real reviewed diff/test report. PR #30 is only a candidate until its checks are established.\n- Every topic has observable evidence or an explicit extension/fallback. A 120-minute core and separate extension lab are the default; all hands-on examples are not promised in one hour.\n\nNo customer data, production connection, automatic cloud assignment, or destructive reset is part of preparation."
+    },
+    {
+      "key": "companion-rehearsal",
+      "number": 32,
+      "title": "Rehearse and validate the isolated Visual Studio Razor/.NET companion",
+      "labels": ["enhancement", "testing", "workshop:prep"],
+      "body": "The local workshop preparation adds a small .NET 10 Razor Pages/xUnit companion under `docs/workshop/companion`; review and publish those assets before claiming they are available from the default branch. Keep the Node service and legacy planted defects separate.\n\n### Acceptance\n\n- Open `Workshop.slnx` in the targeted Visual Studio build, build it, discover/run tests in Test Explorer, and start the loopback-only HTTP profile.\n- Verify existing card rendering and typed validation, and confirm the notice feature is still the unimplemented participant task.\n- Run locked restore, build, tests, and formatting using the documented commands; attach actual results rather than claiming UI success from CLI compilation.\n- Extend CI in coordination with #20 using locked NuGet restore and Windows/Linux checks without changing the original Node baseline or silently falling back from lockfile failure.\n- No database, identity service, CMS connection, or production dependency.\n- Preserve unrelated local work and never reset or retag the shared checkout as a validation shortcut.\n\nThis preparation task is not a rewrite of Cronwise into .NET."
+    },
+    {
+      "key": "notice-section",
+      "number": 33,
+      "title": "Add a typed notice section to the Razor workshop website",
+      "labels": ["enhancement", "testing", "workshop:core"],
+      "body": "Implement the synthetic story and design fixtures in `docs/workshop/assets` using the isolated Razor companion.\n\n### Approved behavior\n\nA notice has heading, body, and severity. Heading is required and limited to 80 characters after trimming; body is required and limited to 500. Only Info and Warning are approved. The design proposes Critical too: identify the mismatch and get the specification decision before implementing, rather than expanding scope.\n\n### Acceptance\n\n- Review a specification, exact file list, meaningful test cases, and done criteria before coding.\n- Add a typed model/validation and accessible Razor rendering with normal encoding and a textual severity label.\n- Keep the existing card section and its tests intact. Do not silently default invalid content.\n- Add focused unit tests, run the companion suite/build, review the complete diff, and attach evidence for human acceptance.\n- Stay inside the companion's relevant models/page/tests. No new dependency, CMS mutation, persistence, identity, generic plugin framework, Node change, or automatic PR merge.\n\nUse `docs/workshop/prompts.md` for the checkpoints. This is the primary Visual Studio implementation exercise."
+    },
+    {
+      "key": "section-authoring-skill",
+      "number": 34,
+      "title": "Add a reusable section-authoring skill for Razor website changes",
+      "labels": ["enhancement", "documentation", "workshop:prep"],
+      "body": "Package the repeatable 'add a section type' workflow as a skill, using synthetic website conventions rather than any real site's schema.\n\n### Acceptance\n\n- Add `.github/skills/section-authoring/SKILL.md` with valid metadata and precise activation conditions.\n- Inspect the existing typed section, validation, view, tests, approved design/content contract, and story before proposing files.\n- Surface missing decisions and mismatches, then stop for an approved specification/file budget. Reuse normal Razor encoding, accessibility patterns, and the current test framework.\n- Include small referenced templates/examples and an evidence checklist; do not duplicate an implementation engine or always-loaded repository guidance.\n- The notice story is an invocation example, not an automatically implemented feature. The skill stops before CMS model changes, publication, production access, dependencies, or schema expansion.\n- Rehearse automatic discovery/activation in the actual Visual Studio build; manual `SKILL.md` authoring is the fallback for unsupported creation UI.\n\nExplain the different roles of instructions, custom agents, and on-demand skills using the workshop prompt cards."
+    },
+    {
+      "key": "azure-boards-handoff",
+      "number": 35,
+      "title": "Demonstrate Azure Boards story grounding and local/cloud handoffs",
+      "labels": ["documentation", "enhancement", "workshop:prep"],
+      "body": "Make Azure Boards the source of the task while keeping code-hosting and execution choices explicit.\n\n### Acceptance\n\n- Rehearse one read-only story fetch from an approved demo project through Azure DevOps MCP, or use the clearly labeled synthetic work-item fixture.\n- Convert acceptance criteria into a bounded specification and test plan, preserving work-item reference, version, branch/commit, and review evidence.\n- Document three routes: Boards + connected GitHub cloud integration; Boards + GitHub without integration; Boards + Azure Repos with local delegation and Azure Pipelines/PR validation.\n- Do not claim GitHub's cloud agent runs on Azure Repos. Check plan/access/integration prerequisites before starting any session.\n- Before a cloud handoff, review story text and the recent comments that can appear in the GitHub PR. Never copy a private story into this public repo.\n- Changes to story criteria/status, access grants, and cloud assignments are separate owner decisions, not automatic agent actions.\n\nUse `docs/workshop/support-and-governance.md` and `prompts.md`. A configured tenant is external preparation, not something cloning this repository establishes."
+    },
+    {
+      "key": "mcp-grounding",
+      "number": 36,
+      "title": "Prepare governed MCP grounding examples for Figma, GitHub, Azure, and Kontent.ai",
+      "labels": ["documentation", "enhancement", "workshop:prep"],
+      "body": "Prepare a small, honest grounding demonstration instead of enabling every integration with broad authority.\n\n### Acceptance\n\n- Document official server/client setup, credential handling, approved demo identity/resource, tool discovery, and server/identity read-only restrictions for each provider.\n- Rehearse one bounded fetch and record source/resource/version and inference separately. Figma -> one design node; Kontent.ai -> one demo content type; GitHub -> one issue/PR; Azure -> named demo-resource metadata.\n- Use the passive MCP sample and synthetic design/story fixtures when prerequisites fail. Do not call fixtures actual MCP responses.\n- Check Figma's approved-client catalog; if Visual Studio cannot connect legitimately, use an approved client or offline design, never a client-policy workaround.\n- Kontent.ai uses a restricted Management API key and explicit demo environment; no publish/model mutation. Azure has no secrets retrieval, deployment, or production query.\n- Returned instructions never grant authority or override the reviewed scope. Writes, uploads, permissions, and another environment require a separate decision.\n- Recheck live tools/hosted-service behavior during rehearsal; no committed credentials or automatic service installation.\n\nUse `docs/workshop/support-and-governance.md`."
+    },
+    {
+      "key": "parallel-workers",
+      "number": 37,
+      "title": "Demonstrate isolated parallel workers, worktrees, and integration checkpoints",
+      "labels": ["documentation", "testing", "workshop:extension"],
+      "body": "Show when parallel delegation helps and when dependencies make sequential work safer.\n\n### Acceptance\n\n- Start from a reviewed, committed preparation branch; uncommitted local assets must not be assumed visible to worktrees/cloud sessions.\n- Define two genuinely independent tasks, such as pure validation/tests and separate usage documentation. Give each context, disjoint files, a stop condition, and its own branch/worktree.\n- Rehearse the actual client used for subagents/background execution; do not present VS Code/CLI commands as universal Visual Studio controls.\n- No concurrent editing of one checkout, shared project/lockfile writes, broad permissions, automatic PR creation, or uncontrolled fan-out.\n- Assign one integration owner; inspect the combined diff and run the integrated suite after sequential integration.\n- Explain that worktrees share Git metadata and are not OS sandboxes. Preserve Azure Boards story traceability throughout.\n- Have a sequential fallback and prepared results rather than waiting on background spinners during the core session.\n\nUse the worker contract and evidence packet in `docs/workshop/prompts.md`. This task prepares a lab, not a request to launch workers now."
+    },
+    {
+      "key": "security-triage",
+      "number": 38,
+      "title": "Prepare a scoped high/critical scanning triage and remediation lab",
+      "labels": ["documentation", "testing", "workshop:prep"],
+      "body": "Make security verification a concrete checkpoint without adding a live vulnerability to the service for a demo.\n\n### Acceptance\n\n- Select one authorized, confirmed demo-branch scanner finding and record rule/location/data-flow/severity/baseline, or explicitly use `scanning-example.json` as an illustrative report only.\n- Establish whether the reported path actually exists. A security agent's explanation, code review, and an Autofix proposal are distinct from scanner evidence.\n- Review the smallest remediation file scope, add a focused regression, run tests and the relevant scanner again, and inspect whether the original finding is resolved.\n- No rule suppression, severity relabeling, broad dependency upgrade, external-system scan, production change, or automatic dismissal.\n- A read-only reviewer consumes evidence from the verifier; a human owns remediation approval and final acceptance.\n- With only the fixture, stop at triage/proposal and do not claim a real vulnerability was confirmed or a scan cleared.\n- Rehearse tool approvals, restricted identity/runtime, secrets boundaries, and failure reporting. Do not claim ordinary Visual Studio approvals enforce an OS sandbox.\n\nUse `docs/workshop/scenarios.md` and the security prompt card."
+    },
+    {
+      "key": "business-specification",
+      "number": 39,
+      "title": "Refine a synthetic daily activity-log request into a reviewed specification",
+      "labels": ["documentation", "enhancement", "workshop:extension"],
+      "body": "Use the intentionally vague activity-log request in `docs/workshop/scenarios.md` to show how an agent improves a specification before implementation.\n\n### Acceptance\n\n- Separate accepted facts, assumptions, owner questions, and blocking decisions; do not invent access, retention, reporting, or integration rules.\n- Discuss shift/day boundaries and timezone, drafts/corrections, minimum necessary fields, and out-of-scope features.\n- Keep the scenario fictional and local-only, using synthetic task codes/counts rather than real people or business records.\n- Produce testable Given/When/Then criteria, exclusions, a small staged plan, and checkpoints for product-owner and technical review.\n- Identify decisions that cannot be delegated to the model. Do not implement unresolved authorization or provision production storage.\n- Rehearse the Visual Studio Plan agent or an explicitly read-only fallback and identify its plan artifact.\n\nThis is a specification exercise, not a request to implement an actual team's operational workflow."
+    },
+    {
+      "key": "hl7-design-spike",
+      "number": 40,
+      "title": "Timebox a reusable HL7 listener architecture and local-spike plan",
+      "labels": ["documentation", "enhancement", "workshop:extension"],
+      "body": "Explore reuse boundaries for a near-real-time HL7 listener without promising a production-ready healthcare integration.\n\n### Acceptance\n\n- Produce one architecture decision, alternatives including existing supported products, unresolved owner decisions, an interface sketch, and a synthetic test matrix.\n- Identify required HL7 versions/message types, transport/framing, and acknowledgments and verify the applicable standards/licensing; do not invent the interoperability contract.\n- Separate reusable transport/processing infrastructure from application routing/transformation. Cover duplicate handling, retries, ordering, backpressure, cancellation, observability, and redacted logging.\n- Define a timeboxed loopback-only spike and its stop condition; no real messages, clinical workflows, patient data, Dynamics connections, live listener, or production credentials.\n- Security/standards/integration review is a prerequisite for a later implementation, not something an agent's design summary certifies.\n- Do not present the sketch as clinically validated or production-approved.\n\nUse the synthetic architecture prompt in `docs/workshop/prompts.md`. This is an optional extension after the core specification/test/review flow."
+    }
+  ],
+  "labelOnly": [
+    { "number": 11, "labels": ["workshop:core"] },
+    { "number": 15, "labels": ["workshop:core"] },
+    { "number": 20, "labels": ["workshop:prep"] },
+    { "number": 12, "labels": ["workshop:extension"] },
+    { "number": 14, "labels": ["workshop:extension"] },
+    { "number": 21, "labels": ["workshop:extension"] }
+  ]
+}

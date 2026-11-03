@@ -1,0 +1,25 @@
+{
+  "fixture": true,
+  "source": "Author-created design and content-contract fixture; not fetched from Figma or Kontent.ai",
+  "component": "NoticeSection",
+  "contentContract": {
+    "heading": { "type": "plain-text", "required": true, "maxLength": 80 },
+    "body": { "type": "plain-text", "required": true, "maxLength": 500 },
+    "severity": { "type": "choice", "proposedValues": ["Info", "Warning", "Critical"] }
+  },
+  "approvedDemoValues": { "heading": "Scheduled maintenance", "body": "The demo site will be unavailable briefly during a local rehearsal.", "severity": "Info" },
+  "layout": {
+    "containerMaxWidth": "70rem",
+    "padding": "1.5rem",
+    "smallViewport": "Single full-width notice; no horizontal overflow",
+    "headingLevel": 2,
+    "severityLabel": "Visible text, not color alone"
+  },
+  "tokens": {
+    "foreground": "#172b4d",
+    "background": "#f5f7fa",
+    "border": "#667085",
+    "focus": "#0050a4"
+  },
+  "knownMismatch": "The story approves Info and Warning only; the proposed design contract includes Critical. Ask the product owner rather than expanding scope."
+}

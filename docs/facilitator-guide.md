@@ -1,5 +1,13 @@
 # cronwise — Facilitator Guide
 
+> **Choose the audience track first.** This is the original introductory,
+> four-surface workshop. For experienced developers using Visual Studio 2026,
+> use [Structured delegation workshop](delegation-workshop.md) instead. That
+> track keeps these exercises as optional practice and adds a Razor/.NET
+> companion, Azure Boards handoffs, explicit verification gates, and MCP
+> governance. Do not use this guide's destructive reset routine in a shared
+> working checkout or as a normal agent validation step.
+
 **Workshop:** Getting Started with GitHub Copilot
 **Duration:** 60 minutes
 **Repo:** https://github.com/samueltauil/cronwise

@@ -6,19 +6,72 @@ on:
   pull_request:
 
 jobs:
-  verify:
+  node:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm ci || npm install
+          cache: npm
+      - run: npm ci
       - name: Unit tests
         run: npm test
       - name: Smoke test
         run: |
           npm start &
-          sleep 3
-          curl -sf "http://localhost:3000/health"
-          curl -sf -G "http://localhost:3000/explain" --data-urlencode "expression=30 9 * * 1-5"
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID"' EXIT
+          for attempt in {1..10}; do
+            if curl -sf "http://127.0.0.1:3000/health" >/dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          curl -sf "http://127.0.0.1:3000/health"
+          curl -sf -G "http://127.0.0.1:3000/explain" --data-urlencode "expression=30 9 * * 1-5"
+
+  companion:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Locked restore
+        run: dotnet restore docs/workshop/companion/Workshop.slnx --locked-mode
+      - name: Build
+        run: dotnet build docs/workshop/companion/Workshop.slnx --no-restore
+      - name: Test
+        run: dotnet test docs/workshop/companion/Workshop.slnx --no-build
+      - name: Verify formatting
+        run: dotnet format docs/workshop/companion/Workshop.slnx --verify-no-changes --no-restore
+      - name: Loopback smoke test
+        shell: pwsh
+        run: |
+          $server = Start-Process dotnet -ArgumentList 'run --project docs/workshop/companion/src/Workshop.Web --no-launch-profile --urls http://127.0.0.1:5199' -PassThru
+          try {
+            $health = $null
+            for ($attempt = 0; $attempt -lt 20; $attempt++) {
+              try {
+                $health = Invoke-RestMethod http://127.0.0.1:5199/health
+                if ($health.service -eq 'workshop-web') { break }
+              } catch {
+                Start-Sleep -Seconds 1
+              }
+            }
+            if ($health.service -ne 'workshop-web') { throw 'Companion health check failed' }
+
+            $page = Invoke-WebRequest http://127.0.0.1:5199/ -UseBasicParsing
+            if ($page.StatusCode -ne 200 -or !$page.Content.Contains('Team resources')) {
+              throw 'Companion card rendering check failed'
+            }
+            $page.Content | Select-String 'Team resources' | Out-Null
+            $health | ConvertTo-Json -Compress
+          } finally {
+            if (-not $server.HasExited) { Stop-Process -Id $server.Id -Force }
+          }

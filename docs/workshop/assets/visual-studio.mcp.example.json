@@ -1,0 +1,15 @@
+{
+  "servers": {
+    "github-workshop-readonly": {
+      "url": "https://api.githubcopilot.com/mcp/readonly"
+    },
+    "azure-boards-workshop-readonly": {
+      "url": "https://mcp.dev.azure.com/REPLACE_WITH_APPROVED_DEMO_ORGANIZATION",
+      "type": "http",
+      "headers": {
+        "X-MCP-Toolsets": "wit,wiki",
+        "X-MCP-Readonly": "true"
+      }
+    }
+  }
+}
