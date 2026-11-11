@@ -1,0 +1,24 @@
+{
+  "fixture": true,
+  "source": "Author-created workshop input, not an Azure DevOps export",
+  "id": "DEMO-101",
+  "type": "User Story",
+  "title": "Add a notice section to the demo website",
+  "description": "Editors need a reusable notice section for a short service update. Start with the existing Razor companion and keep its card section working.",
+  "acceptanceCriteria": [
+    "Use a typed notice model with heading, body, and severity.",
+    "Heading is required and limited to 80 characters after trimming.",
+    "Body is required and limited to 500 characters after trimming.",
+    "Severity allows Info and Warning only; do not silently default invalid values.",
+    "Render content using normal Razor encoding, with an accessible heading and a textual severity label.",
+    "Add unit tests for valid and invalid input and preserve the existing card-section tests."
+  ],
+  "constraints": [
+    "Local synthetic data only; no CMS, Azure, Figma, production, or identity write operation.",
+    "No new dependency, persistence layer, generic plugin framework, or Node-service modification.",
+    "Use a reviewed specification before implementation and inspect the final full diff."
+  ],
+  "comments": [
+    "The design fixture proposes three severity labels. Only Info and Warning are approved in this story; resolve the mismatch before implementation."
+  ]
+}

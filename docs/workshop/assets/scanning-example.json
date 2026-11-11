@@ -1,0 +1,20 @@
+{
+  "fixture": true,
+  "source": "Illustrative triage exercise, not a scanner result or a confirmed repository vulnerability",
+  "id": "DEMO-SEC-01",
+  "severity": "high",
+  "scenario": "A proposed Razor section bypasses normal encoding for plain-text CMS content.",
+  "reportedDataFlow": "Editable content field -> section view model -> unencoded HTML rendering",
+  "questions": [
+    "Is this path present in the actual proposed diff?",
+    "Is the input plain text or an approved sanitized rich-text contract?",
+    "What scanner rule and reproduction support the report?",
+    "Can one rendering change and a focused regression remove the unsafe path without redesigning the app?"
+  ],
+  "completionEvidence": [
+    "Authorized real alert identifier and rule, or an explicit statement that only this fixture was used",
+    "Scoped diff and regression result",
+    "Relevant scanner rerun when a real alert is used",
+    "Human review with unresolved risks recorded"
+  ]
+}

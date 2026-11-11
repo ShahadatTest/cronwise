@@ -32,7 +32,7 @@ function ordinal(n) {
 
 function formatClock(hour, minute) {
   const suffix = hour < 12 ? 'AM' : 'PM';
-  const displayHour = hour % 12;
+  const displayHour = hour % 12 === 0 ? 12 : hour % 12;
   return `${displayHour}:${String(minute).padStart(2, '0')} ${suffix}`;
 }
 
@@ -53,7 +53,23 @@ function formatClock(hour, minute) {
  * @returns {string|null} a phrase such as "Every 15 minutes", or null
  */
 function describeMinuteStep(minutes) {
-  return null;
+  const gap = minutes[1] - minutes[0];
+  if (gap <= 0) return null;
+
+  for (let i = 1; i < minutes.length; i++) {
+    const currentGap = (minutes[i] - minutes[i - 1] + 60) % 60;
+    if (currentGap !== gap) {
+      return null;
+    }
+  }
+
+  if (gap === 60 / minutes.length) {
+    return `Every ${gap} minutes`;
+  }
+
+  const start = minutes[0];
+  const end = minutes[minutes.length - 1];
+  return `Every ${gap} minutes from :${String(start).padStart(2, '0')} to :${String(end).padStart(2, '0')}`;
 }
 
 function describeTime(parsed) {

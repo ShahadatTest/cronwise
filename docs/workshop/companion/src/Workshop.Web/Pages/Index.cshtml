@@ -1,0 +1,37 @@
+@page
+@model Workshop.Web.Pages.IndexModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Delegation workshop</title>
+    <style>
+        body { margin: 0; padding: 2rem; font-family: system-ui, sans-serif; color: #172b4d; background: #f5f7fa; }
+        main { max-width: 70rem; margin: auto; }
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 1rem; }
+        article { background: white; padding: 1.5rem; border: 1px solid #667085; border-radius: .5rem; }
+        a { color: #0050a4; }
+        a:focus-visible { outline: 3px solid #0050a4; outline-offset: 4px; }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Structured delegation</h1>
+        <p>This is a synthetic, local-only workshop site. It has no CMS, database, or production connections.</p>
+        <section aria-labelledby="resources-heading">
+            <h2 id="resources-heading">@Model.Section.Heading</h2>
+            <div class="cards">
+                @foreach (var card in Model.Section.Cards)
+                {
+                    <article>
+                        <h3>@card.Title</h3>
+                        <p>@card.Summary</p>
+                        <a href="@card.Url">@card.Title</a>
+                    </article>
+                }
+            </div>
+        </section>
+    </main>
+</body>
+</html>

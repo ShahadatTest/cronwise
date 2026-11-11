@@ -1,5 +1,11 @@
 node_modules/
 npm-debug.log*
 .env
+.env.*
+!.env.example
 .DS_Store
 coverage/
+.vs/
+**/bin/
+**/obj/
+**/TestResults/
